@@ -1,0 +1,637 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generator="Robot 5.0 (Python 3.10.1 on win32)" generated="20220331 11:28:01.017" rpa="false" schemaversion="3">
+<suite id="s1" name="TestCases" source="C:\Users\a-pustovoitaite\robot-scripts\API\TestCases">
+<suite id="s1-s1" name="TC1 GET Request" source="C:\Users\a-pustovoitaite\robot-scripts\API\TestCases\TC1_GET_Request.robot">
+<test id="s1-s1-t1" name="Get Weather Info" line="14">
+<kw name="Create Session" library="RequestsLibrary">
+<arg>mysession</arg>
+<arg>${Base_url}</arg>
+<doc>Create Session: create a HTTP session to a server</doc>
+<msg timestamp="20220331 11:28:01.296" level="INFO">Creating Session using : alias=mysession, url=https://reqres.in, headers={},                     cookies={}, auth=None, timeout=None, proxies=None, verify=False,                     debug=0 </msg>
+<status status="PASS" starttime="20220331 11:28:01.296" endtime="20220331 11:28:01.296"/>
+</kw>
+<kw name="GET On Session" library="RequestsLibrary">
+<var>${response}</var>
+<arg>mysession</arg>
+<arg>/api/users</arg>
+<doc>Sends a GET request on a previously created HTTP Session.</doc>
+<msg timestamp="20220331 11:28:01.541" level="INFO">GET Request : url=https://reqres.in/api/users 
+ path_url=/api/users 
+ headers={'User-Agent': 'python-requests/2.27.1', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive'} 
+ body=None 
+ </msg>
+<msg timestamp="20220331 11:28:01.541" level="INFO">GET Response : url=https://reqres.in/api/users 
+ status=200, reason=OK 
+ headers={'Date': 'Thu, 31 Mar 2022 10:28:01 GMT', 'Content-Type': 'application/json; charset=utf-8', 'Transfer-Encoding': 'chunked', 'Connection': 'keep-alive', 'x-powered-by': 'Express', 'access-control-allow-origin': '*', 'etag': 'W/"3e4-2RLXvr5wTg9YQ6aH95CkYoFNuO8"', 'via': '1.1 vegur', 'Cache-Control': 'max-age=14400', 'CF-Cache-Status': 'HIT', 'Age': '6972', 'Expect-CT': 'max-age=604800, report-uri="https://report-uri.cloudflare.com/cdn-cgi/beacon/expect-ct"', 'Report-To': '{"endpoints":[{"url":"https:\\/\\/a.nel.cloudflare.com\\/report\\/v3?s=%2BLuBfHs7OZb4lk0i19QRjnByRcwzP7yQO%2Fb5MQ70SLpQO6gyn2DQlmEcPRa9RJK9Hn9wGgCkiBBpNzH%2BmHL0czvLIUEG4JxjZX9m9xZn0i6baC29laINF7xeLsg%3D"}],"group":"cf-nel","max_age":604800}', 'NEL': '{"success_fraction":0,"report_to":"cf-nel","max_age":604800}', 'Vary': 'Accept-Encoding', 'Server': 'cloudflare', 'CF-RAY': '6f4865555dc472ae-LHR', 'Content-Encoding': 'gzip', 'alt-svc': 'h3=":443"; ma=86400, h3-29=":443"; ma=86400'} 
+ body={"page":1,"per_page":6,"total":12,"total_pages":2,"data":[{"id":1,"email":"george.bluth@reqres.in","first_name":"George","last_name":"Bluth","avatar":"https://reqres.in/img/faces/1-image.jpg"},{"id":2,"email":"janet.weaver@reqres.in","first_name":"Janet","last_name":"Weaver","avatar":"https://reqres.in/img/faces/2-image.jpg"},{"id":3,"email":"emma.wong@reqres.in","first_name":"Emma","last_name":"Wong","avatar":"https://reqres.in/img/faces/3-image.jpg"},{"id":4,"email":"eve.holt@reqres.in","first_name":"Eve","last_name":"Holt","avatar":"https://reqres.in/img/faces/4-image.jpg"},{"id":5,"email":"charles.morris@reqres.in","first_name":"Charles","last_name":"Morris","avatar":"https://reqres.in/img/faces/5-image.jpg"},{"id":6,"email":"tracey.ramos@reqres.in","first_name":"Tracey","last_name":"Ramos","avatar":"https://reqres.in/img/faces/6-image.jpg"}],"support":{"url":"https://reqres.in/#support-heading","text":"To keep ReqRes free, contributions towards server costs are appreciated!"}} 
+ </msg>
+<msg timestamp="20220331 11:28:01.541" level="INFO">c:\users\a-pustovoitaite\robot-scripts\api\venv\lib\site-packages\urllib3\connectionpool.py:1043: InsecureRequestWarning: Unverified HTTPS request is being made to host 'reqres.in'. Adding certificate verification is strongly advised. See: https://urllib3.readthedocs.io/en/1.26.x/advanced-usage.html#ssl-warnings
+  warnings.warn(</msg>
+<msg timestamp="20220331 11:28:01.542" level="INFO">${response} = &lt;Response [200]&gt;</msg>
+<status status="PASS" starttime="20220331 11:28:01.296" endtime="20220331 11:28:01.542"/>
+</kw>
+<kw name="Convert To String" library="BuiltIn">
+<var>${status_code}</var>
+<arg>${response.status_code}</arg>
+<doc>Converts the given item to a Unicode string.</doc>
+<msg timestamp="20220331 11:28:01.542" level="INFO">${status_code} = 200</msg>
+<status status="PASS" starttime="20220331 11:28:01.542" endtime="20220331 11:28:01.542"/>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<arg>${status_code}</arg>
+<arg>200</arg>
+<doc>Fails if the given objects are unequal.</doc>
+<status status="PASS" starttime="20220331 11:28:01.543" endtime="20220331 11:28:01.543"/>
+</kw>
+<kw name="Convert To String" library="BuiltIn">
+<var>${body}</var>
+<arg>${response.content}</arg>
+<doc>Converts the given item to a Unicode string.</doc>
+<msg timestamp="20220331 11:28:01.544" level="INFO">${body} = {"page":1,"per_page":6,"total":12,"total_pages":2,"data":[{"id":1,"email":"george.bluth@reqres.in","first_name":"George","last_name":"Bluth","avatar":"https://reqres.in/img/faces/1-image.jpg"},{"id":2...</msg>
+<status status="PASS" starttime="20220331 11:28:01.544" endtime="20220331 11:28:01.544"/>
+</kw>
+<kw name="Should Contain" library="BuiltIn">
+<arg>${body}</arg>
+<arg>"email":"janet.weaver@reqres.in"</arg>
+<doc>Fails if ``container`` does not contain ``item`` one or more times.</doc>
+<status status="PASS" starttime="20220331 11:28:01.545" endtime="20220331 11:28:01.545"/>
+</kw>
+<kw name="Get From Dictionary" library="Collections">
+<var>${contentTypeValue}</var>
+<arg>${response.headers}</arg>
+<arg>Content-Type</arg>
+<doc>Returns a value from the given ``dictionary`` based on the given ``key``.</doc>
+<msg timestamp="20220331 11:28:01.546" level="INFO">${contentTypeValue} = application/json; charset=utf-8</msg>
+<status status="PASS" starttime="20220331 11:28:01.545" endtime="20220331 11:28:01.546"/>
+</kw>
+<kw name="Convert To String" library="BuiltIn">
+<var>${contentTypeValue_string}</var>
+<arg>${contentTypeValue}</arg>
+<doc>Converts the given item to a Unicode string.</doc>
+<msg timestamp="20220331 11:28:01.546" level="INFO">${contentTypeValue_string} = application/json; charset=utf-8</msg>
+<status status="PASS" starttime="20220331 11:28:01.546" endtime="20220331 11:28:01.546"/>
+</kw>
+<kw name="Log" library="BuiltIn">
+<arg>${contentTypeValue_string}</arg>
+<doc>Logs the given message with the given level.</doc>
+<msg timestamp="20220331 11:28:01.547" level="INFO">application/json; charset=utf-8</msg>
+<status status="PASS" starttime="20220331 11:28:01.547" endtime="20220331 11:28:01.547"/>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<arg>${contentTypeValue_string}</arg>
+<arg>application/json; charset=utf-8</arg>
+<doc>Fails if the given objects are unequal.</doc>
+<status status="PASS" starttime="20220331 11:28:01.548" endtime="20220331 11:28:01.548"/>
+</kw>
+<status status="PASS" starttime="20220331 11:28:01.295" endtime="20220331 11:28:01.549"/>
+</test>
+<doc>jjjj</doc>
+<status status="PASS" starttime="20220331 11:28:01.040" endtime="20220331 11:28:01.550"/>
+</suite>
+<suite id="s1-s2" name="TC2 POST Request" source="C:\Users\a-pustovoitaite\robot-scripts\API\TestCases\TC2_POST_Request.robot">
+<test id="s1-s2-t1" name="Put customer registration" line="12">
+<kw name="Create Session" library="RequestsLibrary">
+<arg>mysession</arg>
+<arg>${Base_url}</arg>
+<doc>Create Session: create a HTTP session to a server</doc>
+<msg timestamp="20220331 11:28:01.557" level="INFO">Creating Session using : alias=mysession, url=https://www.barkyn.com/checkout/login, headers={},                     cookies={}, auth=None, timeout=None, proxies=None, verify=False,                     debug=0 </msg>
+<status status="PASS" starttime="20220331 11:28:01.557" endtime="20220331 11:28:01.557"/>
+</kw>
+<kw name="Create Dictionary" library="BuiltIn">
+<var>${body}</var>
+<arg>useremail=barkyn@gmail.com</arg>
+<arg>password=123456</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<msg timestamp="20220331 11:28:01.558" level="INFO">${body} = {'useremail': 'barkyn@gmail.com', 'password': '123456'}</msg>
+<status status="PASS" starttime="20220331 11:28:01.558" endtime="20220331 11:28:01.558"/>
+</kw>
+<kw name="Create Dictionary" library="BuiltIn">
+<var>${header}</var>
+<arg>Connection=keep-alive</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<msg timestamp="20220331 11:28:01.559" level="INFO">${header} = {'Connection': 'keep-alive'}</msg>
+<status status="PASS" starttime="20220331 11:28:01.559" endtime="20220331 11:28:01.559"/>
+</kw>
+<kw name="POST On Session" library="RequestsLibrary">
+<var>${response}</var>
+<arg>mysession</arg>
+<arg>${Base_url}</arg>
+<arg>data=${body}</arg>
+<arg>headers=${header}</arg>
+<doc>Sends a POST request on a previously created HTTP Session.</doc>
+<msg timestamp="20220331 11:28:02.528" level="INFO">POST Request : url=https://www.barkyn.com/checkout/login 
+ path_url=/checkout/login 
+ headers={'User-Agent': 'python-requests/2.27.1', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive', 'Content-Length': '44', 'Content-Type': 'application/x-www-form-urlencoded'} 
+ body=useremail=barkyn%40gmail.com&amp;password=123456 
+ </msg>
+<msg timestamp="20220331 11:28:02.528" level="INFO">POST Response : url=https://www.barkyn.com/checkout/login 
+ status=200, reason=OK 
+ headers={'Server': 'nginx', 'Date': 'Thu, 31 Mar 2022 10:28:02 GMT', 'Content-Type': 'text/html; charset=utf-8', 'Transfer-Encoding': 'chunked', 'Connection': 'keep-alive', 'Set-Cookie': 'lang=pt-pt; Path=/', 'ETag': '"32540-82Abl8ccRorMUCDEzs8fY4762Yk"', 'Cache-Control': 'private, no-cache, no-store, max-age=0, must-revalidate', 'Vary': 'Accept-Encoding', 'Content-Encoding': 'gzip'} 
+ body=&lt;!DOCTYPE html&gt;&lt;html lang="pt-pt"&gt;&lt;head&gt;&lt;meta charSet="utf-8"/&gt;&lt;title&gt;Barkyn: ração e veterinário para cães&lt;/title&gt;&lt;meta name="viewport" content="width=device-width, initial-scale=1"/&gt;&lt;meta property="og:title" content="Barkyn: ração e veterinário para cães"/&gt;&lt;meta name="twitter:title" property="twitter:title" content="Barkyn: ração e veterinário para cães"/&gt;&lt;meta name="description" content="Criamos e entregamos à sua porta uma ração à medida do seu cão com base na idade, tamanho, estilo de vida e alergias, com o sabor que ele mais gosta. Acompanhamento veterinário online."/&gt;&lt;meta property="og:description" content="Criamos e entregamos à sua porta uma ração à medida do seu cão com base na idade, tamanho, estilo de vida e alergias, com o sabor que ele mais gosta. Acompanhamento veterinário online."/&gt;&lt;meta name="twitter:description" property="twitter:description" content="Criamos e entregamos à sua porta uma ração à medida do seu cão com base na idade, tamanho, estilo de vida e alergias, com o sabor que ele mais gosta. Acompanhamento veterinário online."/&gt;&lt;meta name="next-head-count" content="9"/&gt;&lt;meta name="google-site-verification" content="8HdfLI71KcSH80Qj5j58cFrimIqhApHwpwNCkiw_-ok"/&gt;&lt;meta name="facebook-domain-verification" content="evur656iu48vp520vj3qbk58921tog"/&gt;&lt;meta name="theme-color" content="#5f2eff" media="(prefers-color-scheme: light)"/&gt;&lt;meta name="theme-color" content="#5f2eff" media="(prefers-color-scheme: dark)"/&gt;&lt;meta property="og:logo" content="/static/favicon-96x96.png"/&gt;&lt;link rel="icon" type="image/png" href="/static/favicon-96x96.png" sizes="96x96"/&gt;&lt;meta property="og:type" content="website"/&gt;&lt;meta property="og:url" content="www.barkyn.com"/&gt;&lt;meta name="keywords" content="Food, dogs, subscription"/&gt;&lt;script async="" defer=""&gt;
+        (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+        new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+        j=d.createElement(s),dl=l!='dataLayer'?'&amp;l='+l:'';j.async=true;j.src=
+        'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+        })(window,document,'script','dataLayer','GTM-PDXKZJ6');
+      &lt;/script&gt;&lt;link rel="preload" as="image" href="https://images.prismic.io/barkyn/80f67a06-01f8-4a18-b7b9-71dc787b3fb2_hero_desktop.webp?auto=compress,format" imagesrcset="https://images.prismic.io/barkyn/510898d5-d686-4a0b-877b-c080d8e440b1_hero_phone.webp?auto=compress,format&amp;amp;rect=0,0,1000,1034&amp;amp;w=800&amp;amp;h=827 400w"/&gt;&lt;link rel="preload" href="/static/webfonts/AzoSans-Bold.woff2" as="font" crossorigin=""/&gt;&lt;link rel="preload" href="/static/webfonts/AzoSans-Medium.woff2" as="font" crossorigin=""/&gt;&lt;link rel="preload" href="/static/webfonts/AzoSans-Regular.woff2" as="font" crossorigin=""/&gt;&lt;link rel="preload" href="/static/webfonts/AzoSans-Light.woff2" as="font" crossorigin=""/&gt;&lt;noscript data-n-css=""&gt;&lt;/noscript&gt;&lt;script defer="" nomodule="" src="/_next/static/chunks/polyfills-5cd94c89d3acac5f.js"&gt;&lt;/script&gt;&lt;script defer="" src="/_next/static/chunks/4307.ab14c90564378ca5.js"&gt;&lt;/script&gt;&lt;script src="/_next/static/chunks/webpack-9e437fb8943b9127.js" defer=""&gt;&lt;/script&gt;&lt;script src="/_next/static/chunks/framework-560765ab0625ba27.js" defer=""&gt;&lt;/script&gt;&lt;script src="/_next/static/chunks/main-cf473658534a9518.js" defer=""&gt;&lt;/script&gt;&lt;script src="/_next/static/chunks/pages/_app-5ab7b25e30f5c24a.js" defer=""&gt;&lt;/script&gt;&lt;script src="/_next/static/chunks/1216-7ceb0420900c0916.js" defer=""&gt;&lt;/script&gt;&lt;script src="/_next/static/chunks/2580-87fbd5cd080bbeee.js" defer=""&gt;&lt;/script&gt;&lt;script src="/_next/static/chunks/3949-bd239993ac5b8477.js" defer=""&gt;&lt;/script&gt;&lt;script src="/_next/static/chunks/4049-a46509f53023fd3d.js" defer=""&gt;&lt;/script&gt;&lt;script src="/_next/static/chunks/7505-22c402c8bad345f6.js" defer=""&gt;&lt;/script&gt;&lt;script src="/_next/static/chunks/7743-4ce0ad897de64048.js" defer=""&gt;&lt;/script&gt;&lt;script src="/_next/static/chunks/pages/checkout/login-21ea339327cf0627.js" defer=""&gt;&lt;/script&gt;&lt;script src="/_next/static/5XD6TPukQQfL_fJ0umw7E/_buildManifest.js" defer=""&gt;&lt;/script&gt;&lt;script src="/_next/static/5XD6TPukQQfL_fJ0umw7E/_ssgManifest.js" defer=""&gt;&lt;/script&gt;&lt;script src="/_next/static/5XD6TPukQQfL_fJ0umw7E/_middlewareManifest.js" defer=""&gt;&lt;/script&gt;&lt;/head&gt;&lt;body&gt;&lt;noscript&gt;&lt;iframe title="iframe-GTM-PDXKZJ6" src="https://www.googletagmanager.com/ns.html?id=GTM-PDXKZJ6" height="0" width="0" style="display:none;visibility:hidden"&gt;&lt;/iframe&gt;&lt;/noscript&gt;&lt;div id="__next" data-reactroot=""&gt;&lt;style data-emotion="css-global s62qsw"&gt;:root{--header-height:6.4rem;--header-height-mobile:4.8rem;}@font-face{font-display:swap;font-family:'AzoSans-Bold';src:url('/static/webfonts/AzoSans-Bold.woff2') format('woff2'),url('/static/webfonts/AzoSans-Bold.woff') format('woff'),url('/static/webfonts/AzoSans-Bold.ttf') format('truetype');}@font-face{font-display:swap;font-family:'AzoSans-Medium';src:url('/static/webfonts/AzoSans-Medium.woff2') format('woff2'),url('/static/webfonts/AzoSans-Medium.woff') format('woff'),url('/static/webfonts/AzoSans-Medium.ttf') format('truetype');}@font-face{font-display:swap;font-family:'AzoSans-Regular';src:url('/static/webfonts/AzoSans-Regular.woff2') format('woff2'),url('/static/webfonts/AzoSans-Regular.woff') format('woff'),url('/static/webfonts/AzoSans-Regular.ttf') format('truetype');}@font-face{font-display:swap;font-family:'AzoSans-Light';src:url('/static/webfonts/AzoSans-Light.woff2') format('woff2'),url('/static/webfonts/AzoSans-Light.woff') format('woff'),url('/static/webfonts/AzoSans-Light.ttf') format('truetype');}html{line-height:1.15;-webkit-text-size-adjust:100%;}body{margin:0;}main{display:block;}h1{font-size:2em;margin:0.67em 0;}hr{box-sizing:content-box;height:0;overflow:visible;}pre{font-family:monospace,monospace;font-size:1em;}a{background-color:transparent;}abbr[title]{border-bottom:none;-webkit-text-decoration:underline;text-decoration:underline;-webkit-text-decoration:underline dotted;text-decoration:underline dotted;}b,strong{font-weight:bolder;}code,kbd,samp{font-family:monospace,monospace;font-size:1em;}small{font-size:80%;}sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline;}sub{bottom:-0.25em;}sup{top:-0.5em;}img{border-style:none;}button,input,optgroup,select,textarea{font-family:inherit;font-size:100%;line-height:1.15;margin:0;}button,input{overflow:visible;}button,select{text-transform:none;}button,[type="button"],[type="reset"],[type="submit"]{-webkit-appearance:button;}button::-moz-focus-inner,[type="button"]::-moz-focus-inner,[type="reset"]::-moz-focus-inner,[type="submit"]::-moz-focus-inner{border-style:none;padding:0;}button:-moz-focusring,[type="button"]:-moz-focusring,[type="reset"]:-moz-focusring,[type="submit"]:-moz-focusring{outline:1px dotted ButtonText;}fieldset{padding:0.35em 0.75em 0.625em;}legend{box-sizing:border-box;color:inherit;display:table;max-width:100%;padding:0;white-space:normal;}progress{vertical-align:baseline;}textarea{overflow:auto;}[type="checkbox"],[type="radio"]{box-sizing:border-box;padding:0;}[type="number"]::-webkit-inner-spin-button,[type="number"]::-webkit-outer-spin-button{height:auto;}[type="search"]{-webkit-appearance:textfield;outline-offset:-2px;}[type="search"]::-webkit-search-decoration{-webkit-appearance:none;}::-webkit-file-upload-button{-webkit-appearance:button;font:inherit;}details{display:block;}summary{display:-webkit-box;display:-webkit-list-item;display:-ms-list-itembox;display:list-item;}template{display:none;}[hidden]{display:none;}*,*:before,*:after{box-sizing:border-box;}html{font-size:62.5%;}body{margin:0;padding:0;color:#373C46;font-size:1.2rem;font-family:AzoSans-Regular,sans-serif;line-height:1.4;-webkit-font-smoothing:antialiased;}@media all and (min-width: 768px) and (max-width: 1023px){body{font-size:1.4rem;}body::after{content:'isMd';display:none;}}@media all and (min-width: 1024px){body{font-size:1.6rem;}body::after{content:'isLg';display:none;}}@media all and (max-width: 767px){body{font-size:1.6rem;}body::after{content:'isSm';display:none;}}@media all and (min-width: 1024px) and (max-width: 1279px){body{font-size:1.6rem;}body::after{content:'isLgsm';display:none;}}body .ReactModal__Body--open{overflow:hidden;}html,body,#__next{height:100%;}h1,h2,h3,h4,h5,h6{margin:0;font-weight:normal;font-family:AzoSans-Bold,sans-serif;}ul,li{margin:0;padding:0;list-style:none;}h1{font-size:3.2rem;}@media all and (min-width: 768px) and (max-width: 1023px){h1{font-size:4rem;}}@media all and (min-width: 1024px){h1{font-size:4.8rem;}}h2{font-size:2.6rem;}@media all and (min-width: 768px) and (max-width: 1023px){h2{font-size:3.2rem;}}@media all and (min-width: 1024px){h2{font-size:3.6rem;}}h3{font-size:2.2rem;}@media all and (min-width: 768px) and (max-width: 1023px){h3{font-size:2.4rem;}}@media all and (min-width: 1024px){h3{font-size:2.8rem;}}h4{font-size:1.8rem;}@media all and (min-width: 768px) and (max-width: 1023px){h4{font-size:2rem;}}@media all and (min-width: 1024px){h4{font-size:2.2rem;}}h5{font-size:1.4rem;}@media all and (min-width: 768px) and (max-width: 1023px){h5{font-size:1.6rem;}}@media all and (min-width: 1024px){h5{font-size:1.8rem;}}a{color:#6C63FF;font-family:AzoSans-Medium,sans-serif;cursor:pointer;-webkit-transition:color 200ms cubic-bezier(0.445, 0.05, 0.55, 0.95);transition:color 200ms cubic-bezier(0.445, 0.05, 0.55, 0.95);}a:hover{color:#4139CD;}p{margin:0;font-size:1.6rem;line-height:1.4;}@media all and (min-width: 768px) and (max-width: 1023px){p{font-size:1.8rem;}}@media all and (min-width: 1024px){p{font-size:2rem;}}label{color:#81858E;}strong{font-weight:normal;font-family:AzoSans-Bold,sans-serif;}em{color:#6C63FF;font-style:normal;}input{color:#373C46;font-size:1.6rem;}textarea:focus,input:focus{outline:none;}fieldset{border:0.1rem solid #4139CD;}:not(output):-moz-ui-invalid{box-shadow:none;}:not(output):-moz-ui-invalid:-moz-focusring{box-shadow:none;}div.w-css-reset[data-handle='clickForSoundButton']{display:none!important;}.butter-toast{width:100%;}#nprogress{pointer-events:none;}#nprogr... (set the log level to DEBUG or TRACE to see the full content) 
+ </msg>
+<msg timestamp="20220331 11:28:02.529" level="INFO">c:\users\a-pustovoitaite\robot-scripts\api\venv\lib\site-packages\urllib3\connectionpool.py:1043: InsecureRequestWarning: Unverified HTTPS request is being made to host 'www.barkyn.com'. Adding certificate verification is strongly advised. See: https://urllib3.readthedocs.io/en/1.26.x/advanced-usage.html#ssl-warnings
+  warnings.warn(</msg>
+<msg timestamp="20220331 11:28:02.529" level="INFO">${response} = &lt;Response [200]&gt;</msg>
+<status status="PASS" starttime="20220331 11:28:01.559" endtime="20220331 11:28:02.530"/>
+</kw>
+<kw name="Log To Console" library="BuiltIn">
+<arg>${response.status_code}</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="PASS" starttime="20220331 11:28:02.530" endtime="20220331 11:28:02.531"/>
+</kw>
+<kw name="Log To Console" library="BuiltIn">
+<arg>${response.content}</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="PASS" starttime="20220331 11:28:02.531" endtime="20220331 11:28:02.598"/>
+</kw>
+<kw name="Convert To String" library="BuiltIn">
+<var>${res_body}</var>
+<arg>${response.content}</arg>
+<doc>Converts the given item to a Unicode string.</doc>
+<msg timestamp="20220331 11:28:02.630" level="INFO">${res_body} = &lt;!DOCTYPE html&gt;&lt;html lang="pt-pt"&gt;&lt;head&gt;&lt;meta charSet="utf-8"/&gt;&lt;title&gt;Barkyn: ra\xc3\xa7\xc3\xa3o e veterin\xc3\xa1rio para c\xc3\xa3es&lt;/title&gt;&lt;meta name="viewport" content="width=device-width, initia...</msg>
+<status status="PASS" starttime="20220331 11:28:02.598" endtime="20220331 11:28:02.630"/>
+</kw>
+<kw name="Should Contain" library="BuiltIn">
+<arg>${res_body}</arg>
+<arg>com o sabor</arg>
+<doc>Fails if ``container`` does not contain ``item`` one or more times.</doc>
+<status status="PASS" starttime="20220331 11:28:02.631" endtime="20220331 11:28:02.631"/>
+</kw>
+<status status="PASS" starttime="20220331 11:28:01.557" endtime="20220331 11:28:02.631"/>
+</test>
+<doc>smth</doc>
+<status status="PASS" starttime="20220331 11:28:01.551" endtime="20220331 11:28:02.633"/>
+</suite>
+<suite id="s1-s3" name="TC3 JSON" source="C:\Users\a-pustovoitaite\robot-scripts\API\TestCases\TC3_JSON.robot">
+<test id="s1-s3-t1" name="Testcase1" line="8">
+<kw name="Load JSON From File" library="JSONLibrary">
+<var>${json_obj}</var>
+<arg>C:/Users/a-pustovoitaite/robot-scripts/API/TestCases/jsondata.json</arg>
+<doc>Load JSON from file.</doc>
+<msg timestamp="20220331 11:28:02.778" level="INFO">${json_obj} = {'firstName': 'John', 'lastName': 'Smith', 'age': 25, 'address': {'streetAddress': '21 2nd Street', 'city': 'New York', 'state': 'NY', 'postalCode': '10021'}, 'phoneNumber': [{'type': 'home', 'number'...</msg>
+<status status="PASS" starttime="20220331 11:28:02.778" endtime="20220331 11:28:02.778"/>
+</kw>
+<kw name="Get Value From Json" library="JSONLibrary">
+<var>${name_value}</var>
+<arg>${json_obj}</arg>
+<arg>$.firstName</arg>
+<doc>Get Value From JSON using JSONPath</doc>
+<msg timestamp="20220331 11:28:02.801" level="INFO">${name_value} = ['John']</msg>
+<status status="PASS" starttime="20220331 11:28:02.779" endtime="20220331 11:28:02.801"/>
+</kw>
+<kw name="Log To Console" library="BuiltIn">
+<arg>${name_value[0]}</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="PASS" starttime="20220331 11:28:02.801" endtime="20220331 11:28:02.801"/>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<arg>${name_value[0]}</arg>
+<arg>John</arg>
+<doc>Fails if the given objects are unequal.</doc>
+<status status="PASS" starttime="20220331 11:28:02.801" endtime="20220331 11:28:02.803"/>
+</kw>
+<status status="PASS" starttime="20220331 11:28:02.777" endtime="20220331 11:28:02.803"/>
+</test>
+<status status="PASS" starttime="20220331 11:28:02.635" endtime="20220331 11:28:02.804"/>
+</suite>
+<suite id="s1-s4" name="TC4 JSON" source="C:\Users\a-pustovoitaite\robot-scripts\API\TestCases\TC4_JSON.robot">
+<test id="s1-s4-t1" name="Testcase1" line="14">
+<kw name="Create Session" library="RequestsLibrary">
+<arg>mysession</arg>
+<arg>${base_url}</arg>
+<doc>Create Session: create a HTTP session to a server</doc>
+<msg timestamp="20220331 11:28:02.813" level="INFO">Creating Session using : alias=mysession, url=http://api.open-notify.org/astros.json, headers={},                     cookies={}, auth=None, timeout=None, proxies=None, verify=False,                     debug=0 </msg>
+<status status="PASS" starttime="20220331 11:28:02.812" endtime="20220331 11:28:02.813"/>
+</kw>
+<kw name="GET On Session" library="RequestsLibrary">
+<var>${response}</var>
+<arg>mysession</arg>
+<arg>${base_url}</arg>
+<doc>Sends a GET request on a previously created HTTP Session.</doc>
+<msg timestamp="20220331 11:28:03.203" level="INFO">GET Request : url=http://api.open-notify.org/astros.json 
+ path_url=/astros.json 
+ headers={'User-Agent': 'python-requests/2.27.1', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive'} 
+ body=None 
+ </msg>
+<msg timestamp="20220331 11:28:03.203" level="INFO">GET Response : url=http://api.open-notify.org/astros.json 
+ status=200, reason=OK 
+ headers={'Server': 'nginx/1.10.3', 'Date': 'Thu, 31 Mar 2022 10:28:03 GMT', 'Content-Type': 'application/json', 'Content-Length': '497', 'Connection': 'keep-alive', 'access-control-allow-origin': '*'} 
+ body={"message": "success", "people": [{"name": "Zhai Zhigang", "craft": "Shenzhou 13"}, {"name": "Wang Yaping", "craft": "Shenzhou 13"}, {"name": "Ye Guangfu", "craft": "Shenzhou 13"}, {"name": "Raja Chari", "craft": "ISS"}, {"name": "Tom Marshburn", "craft": "ISS"}, {"name": "Kayla Barron", "craft": "ISS"}, {"name": "Matthias Maurer", "craft": "ISS"}, {"name": "Oleg Artemyev", "craft": "ISS"}, {"name": "Denis Matveev", "craft": "ISS"}, {"name": "Sergey Korsakov.", "craft": "ISS"}], "number": 10} 
+ </msg>
+<msg timestamp="20220331 11:28:03.203" level="INFO">${response} = &lt;Response [200]&gt;</msg>
+<status status="PASS" starttime="20220331 11:28:02.813" endtime="20220331 11:28:03.204"/>
+</kw>
+<kw name="Set Variable" library="BuiltIn">
+<var>${json_response}</var>
+<arg>${response.json()}</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<msg timestamp="20220331 11:28:03.205" level="INFO">${json_response} = {'message': 'success', 'people': [{'name': 'Zhai Zhigang', 'craft': 'Shenzhou 13'}, {'name': 'Wang Yaping', 'craft': 'Shenzhou 13'}, {'name': 'Ye Guangfu', 'craft': 'Shenzhou 13'}, {'name': 'Raja Char...</msg>
+<status status="PASS" starttime="20220331 11:28:03.204" endtime="20220331 11:28:03.205"/>
+</kw>
+<kw name="Get Value From Json" library="JSONLibrary">
+<var>@{name}</var>
+<arg>${json_response}</arg>
+<arg>$.people[0].name</arg>
+<doc>Get Value From JSON using JSONPath</doc>
+<msg timestamp="20220331 11:28:03.221" level="INFO">@{name} = [ Zhai Zhigang ]</msg>
+<status status="PASS" starttime="20220331 11:28:03.205" endtime="20220331 11:28:03.221"/>
+</kw>
+<kw name="Get From List" library="Collections">
+<var>${name_from_list}</var>
+<arg>${name}</arg>
+<arg>0</arg>
+<doc>Returns the value specified with an ``index`` from ``list``.</doc>
+<msg timestamp="20220331 11:28:03.222" level="INFO">${name_from_list} = Zhai Zhigang</msg>
+<status status="PASS" starttime="20220331 11:28:03.222" endtime="20220331 11:28:03.222"/>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<arg>${name_from_list}</arg>
+<arg>Zhai Zhigang</arg>
+<doc>Fails if the given objects are unequal.</doc>
+<status status="PASS" starttime="20220331 11:28:03.222" endtime="20220331 11:28:03.223"/>
+</kw>
+<status status="PASS" starttime="20220331 11:28:02.812" endtime="20220331 11:28:03.223"/>
+</test>
+<doc>This is JSON example</doc>
+<status status="PASS" starttime="20220331 11:28:02.806" endtime="20220331 11:28:03.224"/>
+</suite>
+<suite id="s1-s5" name="TC5 API" source="C:\Users\a-pustovoitaite\robot-scripts\API\TestCases\TC5_API.robot">
+<test id="s1-s5-t1" name="Test API" line="14">
+<kw name="Create Session" library="RequestsLibrary">
+<arg>my_session</arg>
+<arg>${Base_url}</arg>
+<doc>Create Session: create a HTTP session to a server</doc>
+<msg timestamp="20220331 11:28:03.237" level="INFO">Creating Session using : alias=my_session, url=https://reqres.in, headers={},                     cookies={}, auth=None, timeout=None, proxies=None, verify=False,                     debug=0 </msg>
+<status status="PASS" starttime="20220331 11:28:03.236" endtime="20220331 11:28:03.237"/>
+</kw>
+<kw name="GET On Session" library="RequestsLibrary">
+<var>${response}</var>
+<arg>my_session</arg>
+<arg>url=/api/users?page=2</arg>
+<doc>Sends a GET request on a previously created HTTP Session.</doc>
+<msg timestamp="20220331 11:28:03.458" level="INFO">GET Request : url=https://reqres.in/api/users?page=2 
+ path_url=/api/users?page=2 
+ headers={'User-Agent': 'python-requests/2.27.1', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive'} 
+ body=None 
+ </msg>
+<msg timestamp="20220331 11:28:03.458" level="INFO">GET Response : url=https://reqres.in/api/users?page=2 
+ status=200, reason=OK 
+ headers={'Date': 'Thu, 31 Mar 2022 10:28:03 GMT', 'Content-Type': 'application/json; charset=utf-8', 'Transfer-Encoding': 'chunked', 'Connection': 'keep-alive', 'X-Powered-By': 'Express', 'Access-Control-Allow-Origin': '*', 'Etag': 'W/"406-ut0vzoCuidvyMf8arZpMpJ6ZRDw"', 'Via': '1.1 vegur', 'Cache-Control': 'max-age=14400', 'CF-Cache-Status': 'HIT', 'Age': '4835', 'Expect-CT': 'max-age=604800, report-uri="https://report-uri.cloudflare.com/cdn-cgi/beacon/expect-ct"', 'Report-To': '{"endpoints":[{"url":"https:\\/\\/a.nel.cloudflare.com\\/report\\/v3?s=df8slwK5TwBh8Gut%2Bofog6DvQ1J4N2cD0VCOCgIfJpqcZS6Y47O7MxFPvfar5IgPLg68F4ru0hytQ0fidOTjmfzrDQ9VZhCxGp1IHGROgCTEtHmT5P5El7uchp0%3D"}],"group":"cf-nel","max_age":604800}', 'NEL': '{"success_fraction":0,"report_to":"cf-nel","max_age":604800}', 'Vary': 'Accept-Encoding', 'Server': 'cloudflare', 'CF-RAY': '6f48656179fc891e-LHR', 'Content-Encoding': 'gzip', 'alt-svc': 'h3=":443"; ma=86400, h3-29=":443"; ma=86400'} 
+ body={"page":2,"per_page":6,"total":12,"total_pages":2,"data":[{"id":7,"email":"michael.lawson@reqres.in","first_name":"Michael","last_name":"Lawson","avatar":"https://reqres.in/img/faces/7-image.jpg"},{"id":8,"email":"lindsay.ferguson@reqres.in","first_name":"Lindsay","last_name":"Ferguson","avatar":"https://reqres.in/img/faces/8-image.jpg"},{"id":9,"email":"tobias.funke@reqres.in","first_name":"Tobias","last_name":"Funke","avatar":"https://reqres.in/img/faces/9-image.jpg"},{"id":10,"email":"byron.fields@reqres.in","first_name":"Byron","last_name":"Fields","avatar":"https://reqres.in/img/faces/10-image.jpg"},{"id":11,"email":"george.edwards@reqres.in","first_name":"George","last_name":"Edwards","avatar":"https://reqres.in/img/faces/11-image.jpg"},{"id":12,"email":"rachel.howell@reqres.in","first_name":"Rachel","last_name":"Howell","avatar":"https://reqres.in/img/faces/12-image.jpg"}],"support":{"url":"https://reqres.in/#support-heading","text":"To keep ReqRes free, contributions towards server costs are appreciated!"}} 
+ </msg>
+<msg timestamp="20220331 11:28:03.458" level="INFO">c:\users\a-pustovoitaite\robot-scripts\api\venv\lib\site-packages\urllib3\connectionpool.py:1043: InsecureRequestWarning: Unverified HTTPS request is being made to host 'reqres.in'. Adding certificate verification is strongly advised. See: https://urllib3.readthedocs.io/en/1.26.x/advanced-usage.html#ssl-warnings
+  warnings.warn(</msg>
+<msg timestamp="20220331 11:28:03.458" level="INFO">${response} = &lt;Response [200]&gt;</msg>
+<status status="PASS" starttime="20220331 11:28:03.237" endtime="20220331 11:28:03.458"/>
+</kw>
+<kw name="Log" library="BuiltIn">
+<arg>${response.headers}</arg>
+<doc>Logs the given message with the given level.</doc>
+<msg timestamp="20220331 11:28:03.460" level="INFO">{'Date': 'Thu, 31 Mar 2022 10:28:03 GMT', 'Content-Type': 'application/json; charset=utf-8', 'Transfer-Encoding': 'chunked', 'Connection': 'keep-alive', 'X-Powered-By': 'Express', 'Access-Control-Allow-Origin': '*', 'Etag': 'W/"406-ut0vzoCuidvyMf8arZpMpJ6ZRDw"', 'Via': '1.1 vegur', 'Cache-Control': 'max-age=14400', 'CF-Cache-Status': 'HIT', 'Age': '4835', 'Expect-CT': 'max-age=604800, report-uri="https://report-uri.cloudflare.com/cdn-cgi/beacon/expect-ct"', 'Report-To': '{"endpoints":[{"url":"https:\\/\\/a.nel.cloudflare.com\\/report\\/v3?s=df8slwK5TwBh8Gut%2Bofog6DvQ1J4N2cD0VCOCgIfJpqcZS6Y47O7MxFPvfar5IgPLg68F4ru0hytQ0fidOTjmfzrDQ9VZhCxGp1IHGROgCTEtHmT5P5El7uchp0%3D"}],"group":"cf-nel","max_age":604800}', 'NEL': '{"success_fraction":0,"report_to":"cf-nel","max_age":604800}', 'Vary': 'Accept-Encoding', 'Server': 'cloudflare', 'CF-RAY': '6f48656179fc891e-LHR', 'Content-Encoding': 'gzip', 'alt-svc': 'h3=":443"; ma=86400, h3-29=":443"; ma=86400'}</msg>
+<status status="PASS" starttime="20220331 11:28:03.459" endtime="20220331 11:28:03.460"/>
+</kw>
+<kw name="Log" library="BuiltIn">
+<arg>${response.status_code}</arg>
+<doc>Logs the given message with the given level.</doc>
+<msg timestamp="20220331 11:28:03.460" level="INFO">200</msg>
+<status status="PASS" starttime="20220331 11:28:03.460" endtime="20220331 11:28:03.460"/>
+</kw>
+<kw name="Log" library="BuiltIn">
+<arg>${response.content}</arg>
+<doc>Logs the given message with the given level.</doc>
+<msg timestamp="20220331 11:28:03.461" level="INFO">{"page":2,"per_page":6,"total":12,"total_pages":2,"data":[{"id":7,"email":"michael.lawson@reqres.in","first_name":"Michael","last_name":"Lawson","avatar":"https://reqres.in/img/faces/7-image.jpg"},{"id":8,"email":"lindsay.ferguson@reqres.in","first_name":"Lindsay","last_name":"Ferguson","avatar":"https://reqres.in/img/faces/8-image.jpg"},{"id":9,"email":"tobias.funke@reqres.in","first_name":"Tobias","last_name":"Funke","avatar":"https://reqres.in/img/faces/9-image.jpg"},{"id":10,"email":"byron.fields@reqres.in","first_name":"Byron","last_name":"Fields","avatar":"https://reqres.in/img/faces/10-image.jpg"},{"id":11,"email":"george.edwards@reqres.in","first_name":"George","last_name":"Edwards","avatar":"https://reqres.in/img/faces/11-image.jpg"},{"id":12,"email":"rachel.howell@reqres.in","first_name":"Rachel","last_name":"Howell","avatar":"https://reqres.in/img/faces/12-image.jpg"}],"support":{"url":"https://reqres.in/#support-heading","text":"To keep ReqRes free, contributions towards server costs are appreciated!"}}</msg>
+<status status="PASS" starttime="20220331 11:28:03.461" endtime="20220331 11:28:03.461"/>
+</kw>
+<kw name="Log" library="BuiltIn">
+<arg>${response.content}</arg>
+<doc>Logs the given message with the given level.</doc>
+<msg timestamp="20220331 11:28:03.462" level="INFO">{"page":2,"per_page":6,"total":12,"total_pages":2,"data":[{"id":7,"email":"michael.lawson@reqres.in","first_name":"Michael","last_name":"Lawson","avatar":"https://reqres.in/img/faces/7-image.jpg"},{"id":8,"email":"lindsay.ferguson@reqres.in","first_name":"Lindsay","last_name":"Ferguson","avatar":"https://reqres.in/img/faces/8-image.jpg"},{"id":9,"email":"tobias.funke@reqres.in","first_name":"Tobias","last_name":"Funke","avatar":"https://reqres.in/img/faces/9-image.jpg"},{"id":10,"email":"byron.fields@reqres.in","first_name":"Byron","last_name":"Fields","avatar":"https://reqres.in/img/faces/10-image.jpg"},{"id":11,"email":"george.edwards@reqres.in","first_name":"George","last_name":"Edwards","avatar":"https://reqres.in/img/faces/11-image.jpg"},{"id":12,"email":"rachel.howell@reqres.in","first_name":"Rachel","last_name":"Howell","avatar":"https://reqres.in/img/faces/12-image.jpg"}],"support":{"url":"https://reqres.in/#support-heading","text":"To keep ReqRes free, contributions towards server costs are appreciated!"}}</msg>
+<status status="PASS" starttime="20220331 11:28:03.462" endtime="20220331 11:28:03.462"/>
+</kw>
+<kw name="Convert To String" library="BuiltIn">
+<var>${status_code}</var>
+<arg>${response.status_code}</arg>
+<doc>Converts the given item to a Unicode string.</doc>
+<msg timestamp="20220331 11:28:03.464" level="INFO">${status_code} = 200</msg>
+<status status="PASS" starttime="20220331 11:28:03.464" endtime="20220331 11:28:03.464"/>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<arg>${status_code}</arg>
+<arg>200</arg>
+<doc>Fails if the given objects are unequal.</doc>
+<status status="PASS" starttime="20220331 11:28:03.465" endtime="20220331 11:28:03.465"/>
+</kw>
+<kw name="Convert String to JSON" library="JSONLibrary">
+<var>${json_response}</var>
+<arg>${response.content}</arg>
+<doc>Convert String to JSON object</doc>
+<msg timestamp="20220331 11:28:03.466" level="INFO">${json_response} = {'page': 2, 'per_page': 6, 'total': 12, 'total_pages': 2, 'data': [{'id': 7, 'email': 'michael.lawson@reqres.in', 'first_name': 'Michael', 'last_name': 'Lawson', 'avatar': 'https://reqres.in/img/faces...</msg>
+<status status="PASS" starttime="20220331 11:28:03.465" endtime="20220331 11:28:03.466"/>
+</kw>
+<kw name="Log" library="BuiltIn">
+<arg>${json_response}</arg>
+<doc>Logs the given message with the given level.</doc>
+<msg timestamp="20220331 11:28:03.467" level="INFO">{'page': 2, 'per_page': 6, 'total': 12, 'total_pages': 2, 'data': [{'id': 7, 'email': 'michael.lawson@reqres.in', 'first_name': 'Michael', 'last_name': 'Lawson', 'avatar': 'https://reqres.in/img/faces/7-image.jpg'}, {'id': 8, 'email': 'lindsay.ferguson@reqres.in', 'first_name': 'Lindsay', 'last_name': 'Ferguson', 'avatar': 'https://reqres.in/img/faces/8-image.jpg'}, {'id': 9, 'email': 'tobias.funke@reqres.in', 'first_name': 'Tobias', 'last_name': 'Funke', 'avatar': 'https://reqres.in/img/faces/9-image.jpg'}, {'id': 10, 'email': 'byron.fields@reqres.in', 'first_name': 'Byron', 'last_name': 'Fields', 'avatar': 'https://reqres.in/img/faces/10-image.jpg'}, {'id': 11, 'email': 'george.edwards@reqres.in', 'first_name': 'George', 'last_name': 'Edwards', 'avatar': 'https://reqres.in/img/faces/11-image.jpg'}, {'id': 12, 'email': 'rachel.howell@reqres.in', 'first_name': 'Rachel', 'last_name': 'Howell', 'avatar': 'https://reqres.in/img/faces/12-image.jpg'}], 'support': {'url': 'https://reqres.in/#support-heading', 'text': 'To keep ReqRes free, contributions towards server costs are appreciated!'}}</msg>
+<status status="PASS" starttime="20220331 11:28:03.466" endtime="20220331 11:28:03.467"/>
+</kw>
+<kw name="Get Value From Json" library="JSONLibrary">
+<var>${contents}</var>
+<arg>${json_response}</arg>
+<arg>${Page_path}</arg>
+<doc>Get Value From JSON using JSONPath</doc>
+<msg timestamp="20220331 11:28:03.482" level="INFO">${contents} = [6]</msg>
+<status status="PASS" starttime="20220331 11:28:03.467" endtime="20220331 11:28:03.482"/>
+</kw>
+<kw name="Convert To String" library="BuiltIn">
+<var>${contents}</var>
+<arg>${contents}</arg>
+<doc>Converts the given item to a Unicode string.</doc>
+<msg timestamp="20220331 11:28:03.483" level="INFO">${contents} = [6]</msg>
+<status status="PASS" starttime="20220331 11:28:03.483" endtime="20220331 11:28:03.483"/>
+</kw>
+<kw name="Remove String Using Regexp" library="String">
+<var>${contents}</var>
+<arg>${contents}</arg>
+<arg>['\\[\\],]</arg>
+<doc>Removes ``patterns`` from the given ``string``.</doc>
+<msg timestamp="20220331 11:28:03.484" level="INFO">${contents} = 6</msg>
+<status status="PASS" starttime="20220331 11:28:03.484" endtime="20220331 11:28:03.484"/>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<arg>${contents}</arg>
+<arg>6</arg>
+<doc>Fails if the given objects are unequal.</doc>
+<status status="PASS" starttime="20220331 11:28:03.484" endtime="20220331 11:28:03.485"/>
+</kw>
+<status status="PASS" starttime="20220331 11:28:03.236" endtime="20220331 11:28:03.485"/>
+</test>
+<status status="PASS" starttime="20220331 11:28:03.226" endtime="20220331 11:28:03.487"/>
+</suite>
+<suite id="s1-s6" name="TC6 POST" source="C:\Users\a-pustovoitaite\robot-scripts\API\TestCases\TC6_POST.robot">
+<test id="s1-s6-t1" name="TC_06" line="9">
+<kw name="Create Session" library="RequestsLibrary">
+<arg>my_session</arg>
+<arg>${base_url}</arg>
+<doc>Create Session: create a HTTP session to a server</doc>
+<msg timestamp="20220331 11:28:03.494" level="INFO">Creating Session using : alias=my_session, url=http://www.thetestingworldapi.com, headers={},                     cookies={}, auth=None, timeout=None, proxies=None, verify=False,                     debug=0 </msg>
+<status status="PASS" starttime="20220331 11:28:03.494" endtime="20220331 11:28:03.494"/>
+</kw>
+<kw name="Create Dictionary" library="BuiltIn">
+<var>${body}</var>
+<arg>first_name=Agne</arg>
+<arg>middle_name=Vitalevna</arg>
+<arg>last_name=Pustaite</arg>
+<arg>date_of_birth=05/06/1990</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<msg timestamp="20220331 11:28:03.494" level="INFO">${body} = {'first_name': 'Agne', 'middle_name': 'Vitalevna', 'last_name': 'Pustaite', 'date_of_birth': '05/06/1990'}</msg>
+<status status="PASS" starttime="20220331 11:28:03.494" endtime="20220331 11:28:03.494"/>
+</kw>
+<kw name="Log" library="BuiltIn">
+<arg>${body}</arg>
+<doc>Logs the given message with the given level.</doc>
+<msg timestamp="20220331 11:28:03.495" level="INFO">{'first_name': 'Agne', 'middle_name': 'Vitalevna', 'last_name': 'Pustaite', 'date_of_birth': '05/06/1990'}</msg>
+<status status="PASS" starttime="20220331 11:28:03.494" endtime="20220331 11:28:03.495"/>
+</kw>
+<kw name="POST On Session" library="RequestsLibrary">
+<var>${response}</var>
+<arg>my_session</arg>
+<arg>/api/studentsDetails</arg>
+<arg>data=${body}</arg>
+<doc>Sends a POST request on a previously created HTTP Session.</doc>
+<msg timestamp="20220331 11:28:03.852" level="INFO">POST Request : url=http://www.thetestingworldapi.com/api/studentsDetails 
+ path_url=/api/studentsDetails 
+ headers={'User-Agent': 'python-requests/2.27.1', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive', 'Content-Length': '85', 'Content-Type': 'application/x-www-form-urlencoded'} 
+ body=first_name=Agne&amp;middle_name=Vitalevna&amp;last_name=Pustaite&amp;date_of_birth=05%2F06%2F1990 
+ </msg>
+<msg timestamp="20220331 11:28:03.852" level="INFO">POST Response : url=http://www.thetestingworldapi.com/api/studentsDetails 
+ status=201, reason=Created 
+ headers={'Cache-Control': 'no-cache', 'Pragma': 'no-cache', 'Content-Type': 'application/json; charset=utf-8', 'Expires': '-1', 'Location': 'http://www.thetestingworldapi.com/api/studentsDetails/1118220', 'Server': 'Microsoft-IIS/8.5', 'X-AspNet-Version': '4.0.30319', 'X-Powered-By': 'ASP.NET', 'X-Powered-By-Plesk': 'PleskWin', 'Date': 'Thu, 31 Mar 2022 10:28:02 GMT', 'Content-Length': '112'} 
+ body={"id":1118220,"first_name":"Agne","middle_name":"Vitalevna","last_name":"Pustaite","date_of_birth":"05/06/1990"} 
+ </msg>
+<msg timestamp="20220331 11:28:03.852" level="INFO">${response} = &lt;Response [201]&gt;</msg>
+<status status="PASS" starttime="20220331 11:28:03.495" endtime="20220331 11:28:03.852"/>
+</kw>
+<kw name="Log" library="BuiltIn">
+<arg>${response.headers}</arg>
+<doc>Logs the given message with the given level.</doc>
+<msg timestamp="20220331 11:28:03.853" level="INFO">{'Cache-Control': 'no-cache', 'Pragma': 'no-cache', 'Content-Type': 'application/json; charset=utf-8', 'Expires': '-1', 'Location': 'http://www.thetestingworldapi.com/api/studentsDetails/1118220', 'Server': 'Microsoft-IIS/8.5', 'X-AspNet-Version': '4.0.30319', 'X-Powered-By': 'ASP.NET', 'X-Powered-By-Plesk': 'PleskWin', 'Date': 'Thu, 31 Mar 2022 10:28:02 GMT', 'Content-Length': '112'}</msg>
+<status status="PASS" starttime="20220331 11:28:03.853" endtime="20220331 11:28:03.853"/>
+</kw>
+<kw name="Log" library="BuiltIn">
+<arg>${response.status_code}</arg>
+<doc>Logs the given message with the given level.</doc>
+<msg timestamp="20220331 11:28:03.854" level="INFO">201</msg>
+<status status="PASS" starttime="20220331 11:28:03.854" endtime="20220331 11:28:03.854"/>
+</kw>
+<kw name="Log To Console" library="BuiltIn">
+<arg>${response.content}</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="PASS" starttime="20220331 11:28:03.855" endtime="20220331 11:28:03.855"/>
+</kw>
+<kw name="Log" library="BuiltIn">
+<arg>${response.content}</arg>
+<doc>Logs the given message with the given level.</doc>
+<msg timestamp="20220331 11:28:03.856" level="INFO">{"id":1118220,"first_name":"Agne","middle_name":"Vitalevna","last_name":"Pustaite","date_of_birth":"05/06/1990"}</msg>
+<status status="PASS" starttime="20220331 11:28:03.856" endtime="20220331 11:28:03.856"/>
+</kw>
+<kw name="Convert To String" library="BuiltIn">
+<var>${status_code}</var>
+<arg>${response.status_code}</arg>
+<doc>Converts the given item to a Unicode string.</doc>
+<msg timestamp="20220331 11:28:03.857" level="INFO">${status_code} = 201</msg>
+<status status="PASS" starttime="20220331 11:28:03.857" endtime="20220331 11:28:03.857"/>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<arg>${status_code}</arg>
+<arg>201</arg>
+<doc>Fails if the given objects are unequal.</doc>
+<status status="PASS" starttime="20220331 11:28:03.858" endtime="20220331 11:28:03.858"/>
+</kw>
+<status status="PASS" starttime="20220331 11:28:03.493" endtime="20220331 11:28:03.858"/>
+</test>
+<status status="PASS" starttime="20220331 11:28:03.488" endtime="20220331 11:28:03.860"/>
+</suite>
+<suite id="s1-s7" name="TC7 PUT" source="C:\Users\a-pustovoitaite\robot-scripts\API\TestCases\TC7_PUT.robot">
+<test id="s1-s7-t1" name="TC_07" line="9">
+<kw name="Create Session" library="RequestsLibrary">
+<arg>my_session</arg>
+<arg>${base_url}</arg>
+<doc>Create Session: create a HTTP session to a server</doc>
+<msg timestamp="20220331 11:28:03.867" level="INFO">Creating Session using : alias=my_session, url=http://www.thetestingworldapi.com/, headers={},                     cookies={}, auth=None, timeout=None, proxies=None, verify=False,                     debug=0 </msg>
+<status status="PASS" starttime="20220331 11:28:03.867" endtime="20220331 11:28:03.867"/>
+</kw>
+<kw name="Create Dictionary" library="BuiltIn">
+<var>${body}</var>
+<arg>id=1118125</arg>
+<arg>first_name=Someone</arg>
+<arg>middle_name=Middle</arg>
+<arg>last_name=Last</arg>
+<arg>date_of_birth=05/06/1990</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<msg timestamp="20220331 11:28:03.868" level="INFO">${body} = {'id': '1118125', 'first_name': 'Someone', 'middle_name': 'Middle', 'last_name': 'Last', 'date_of_birth': '05/06/1990'}</msg>
+<status status="PASS" starttime="20220331 11:28:03.868" endtime="20220331 11:28:03.868"/>
+</kw>
+<kw name="PUT On Session" library="RequestsLibrary">
+<var>${response}</var>
+<arg>my_session</arg>
+<arg>api/studentsDetails/1118125</arg>
+<arg>data=${body}</arg>
+<doc>Sends a PUT request on a previously created HTTP Session.</doc>
+<msg timestamp="20220331 11:28:04.246" level="INFO">PUT Request : url=http://www.thetestingworldapi.com/api/studentsDetails/1118125 
+ path_url=/api/studentsDetails/1118125 
+ headers={'User-Agent': 'python-requests/2.27.1', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive', 'Content-Length': '92', 'Content-Type': 'application/x-www-form-urlencoded'} 
+ body=id=1118125&amp;first_name=Someone&amp;middle_name=Middle&amp;last_name=Last&amp;date_of_birth=05%2F06%2F1990 
+ </msg>
+<msg timestamp="20220331 11:28:04.246" level="INFO">PUT Response : url=http://www.thetestingworldapi.com/api/studentsDetails/1118125 
+ status=200, reason=OK 
+ headers={'Cache-Control': 'no-cache', 'Pragma': 'no-cache', 'Content-Type': 'application/json; charset=utf-8', 'Expires': '-1', 'Server': 'Microsoft-IIS/8.5', 'X-AspNet-Version': '4.0.30319', 'X-Powered-By': 'ASP.NET', 'X-Powered-By-Plesk': 'PleskWin', 'Date': 'Thu, 31 Mar 2022 10:28:03 GMT', 'Content-Length': '46'} 
+ body={"status":"true","msg":"update  data success"} 
+ </msg>
+<msg timestamp="20220331 11:28:04.246" level="INFO">${response} = &lt;Response [200]&gt;</msg>
+<status status="PASS" starttime="20220331 11:28:03.868" endtime="20220331 11:28:04.246"/>
+</kw>
+<kw name="Log" library="BuiltIn">
+<arg>${response.status_code}</arg>
+<doc>Logs the given message with the given level.</doc>
+<msg timestamp="20220331 11:28:04.248" level="INFO">200</msg>
+<status status="PASS" starttime="20220331 11:28:04.247" endtime="20220331 11:28:04.248"/>
+</kw>
+<kw name="Log To Console" library="BuiltIn">
+<arg>${response.content}</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="PASS" starttime="20220331 11:28:04.248" endtime="20220331 11:28:04.249"/>
+</kw>
+<kw name="GET On Session" library="RequestsLibrary">
+<var>${get_response}</var>
+<arg>my_session</arg>
+<arg>api/studentsDetails</arg>
+<doc>Sends a GET request on a previously created HTTP Session.</doc>
+<msg timestamp="20220331 11:28:04.611" level="INFO">GET Request : url=http://www.thetestingworldapi.com/api/studentsDetails 
+ path_url=/api/studentsDetails 
+ headers={'User-Agent': 'python-requests/2.27.1', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive'} 
+ body=None 
+ </msg>
+<msg timestamp="20220331 11:28:04.611" level="INFO">GET Response : url=http://www.thetestingworldapi.com/api/studentsDetails 
+ status=200, reason=OK 
+ headers={'Cache-Control': 'no-cache', 'Pragma': 'no-cache', 'Content-Type': 'application/json; charset=utf-8', 'Expires': '-1', 'Server': 'Microsoft-IIS/8.5', 'X-AspNet-Version': '4.0.30319', 'X-Powered-By': 'ASP.NET', 'X-Powered-By-Plesk': 'PleskWin', 'Date': 'Thu, 31 Mar 2022 10:28:03 GMT', 'Content-Length': '12184'} 
+ body=[{"id":1118220,"first_name":"Agne","middle_name":"Vitalevna","last_name":"Pustaite","date_of_birth":"05/06/1990"},{"id":1118219,"first_name":"Agne","middle_name":"Vitalevna","last_name":"Pustaite","date_of_birth":"05/06/1990"},{"id":1118218,"first_name":"Agne","middle_name":"Vitalevna","last_name":"Pustaite","date_of_birth":"05/06/1990"},{"id":1118217,"first_name":"Agne","middle_name":"Vitalevna","last_name":"Pustaite","date_of_birth":"05/06/1990"},{"id":1118216,"first_name":"TestA","middle_name":"TestB","last_name":"TestC","date_of_birth":"1233456"},{"id":1118215,"first_name":"","middle_name":"","last_name":"","date_of_birth":"1233456"},{"id":1118214,"first_name":"Test","middle_name":"A","last_name":"World","date_of_birth":"1233456"},{"id":1118213,"first_name":"{{fist_name}}","middle_name":"{{middle_name}}","last_name":"{{last_name}}","date_of_birth":"{{date_of_birth}}"},{"id":1118212,"first_name":"sample string 2","middle_name":null,"last_name":null,"date_of_birth":"sample string 5"},{"id":1118211,"first_name":"Postman","middle_name":"Lestor","last_name":"Marvy","date_of_birth":"12/12/1992"},{"id":1118210,"first_name":"Nayeli","middle_name":"Gaya","last_name":"DIAGANA","date_of_birth":"12/12/1990"},{"id":1118209,"first_name":"XXX","middle_name":"YYY","last_name":"ZZZ","date_of_birth":"11/11/1911"},{"id":1118208,"first_name":"Tst","middle_name":"Tstn","last_name":"Tstnb","date_of_birth":"12/12/1987"},{"id":1118207,"first_name":"Test","middle_name":"A","last_name":"World","date_of_birth":"1233456"},{"id":1118206,"first_name":"{{fist_name}}","middle_name":"{{middle_name}}","last_name":"{{last_name}}","date_of_birth":"{{date_of_birth}}"},{"id":1118205,"first_name":"{{fist_name}}","middle_name":"{{middle_name}}","last_name":"{{last_name}}","date_of_birth":"{{date_of_birth}}"},{"id":1118204,"first_name":"testing","middle_name":"world","last_name":"abc","date_of_birth":"sample string 5"},{"id":1118201,"first_name":"sample string 2","middle_name":"sample string 3","last_name":"sample string 4","date_of_birth":"sample string 5"},{"id":1118200,"first_name":"{{fist_name}}","middle_name":"{{middle_name}}","last_name":"{{last_name}}","date_of_birth":"{{date_of_birth}}"},{"id":1118198,"first_name":null,"middle_name":null,"last_name":null,"date_of_birth":null},{"id":1118197,"first_name":null,"middle_name":null,"last_name":null,"date_of_birth":null},{"id":1118195,"first_name":"Patrick","middle_name":"Hank","last_name":"Doe","date_of_birth":"23-09-1991"},{"id":1118194,"first_name":"Neil","middle_name":"Nitin","last_name":"Mukesh","date_of_birth":"23-09-1999"},{"id":1118193,"first_name":"First2","middle_name":"Mid2","last_name":"Last2","date_of_birth":"23-10-1919"},{"id":1118192,"first_name":"First1","middle_name":"Mid1","last_name":"Last1","date_of_birth":"23-09-1998"},{"id":1118190,"first_name":"Patrick","middle_name":"Hank","last_name":"Doe","date_of_birth":"23-09-1991"},{"id":1118189,"first_name":"Neil","middle_name":"Nitin","last_name":"Mukesh","date_of_birth":"23-09-1999"},{"id":1118188,"first_name":"First2","middle_name":"Mid2","last_name":"Last2","date_of_birth":"23-10-1919"},{"id":1118187,"first_name":"First1","middle_name":"Mid1","last_name":"Last1","date_of_birth":"23-09-1998"},{"id":1118186,"first_name":"Shailesh","middle_name":"Shanker","last_name":"Patil","date_of_birth":"29/05/1993"},{"id":1118185,"first_name":"Shailesh","middle_name":"Shanker","last_name":"Patil","date_of_birth":"29/05/1993"},{"id":1118184,"first_name":"Shaila","middle_name":"Shankar","last_name":"Patil","date_of_birth":"29/05/1995"},{"id":1118183,"first_name":"{{fist_name}}","middle_name":"{{middle_name}}","last_name":"{{last_name}}","date_of_birth":"{{date_of_birth}}"},{"id":1118182,"first_name":"Shailesh","middle_name":"Shankar","last_name":"Chendke","date_of_birth":"16-10-1995"},{"id":1118181,"first_name":"Shailesh","middle_name":"Shankar","last_name":"Chendke","date_of_birth":"16-10-1995"},{"id":1118180,"first_name":"Shailesh","middle_name":"Shanker","last_name":"Patil","date_of_birth":"29/05/1993"},{"id":1118179,"first_name":"Shailesh","middle_name":"Shanker","last_name":"Patil","date_of_birth":"29/05/1993"},{"id":1118178,"first_name":"{{fist_name}}","middle_name":"{{middle_name}}","last_name":"{{last_name}}","date_of_birth":"{{date_of_birth}}"},{"id":1118177,"first_name":"{{fist_name}}","middle_name":"{{middle_name}}","last_name":"{{last_name}}","date_of_birth":"{{date_of_birth}}"},{"id":1118176,"first_name":"{{fist_name}}","middle_name":"{{middle_name}}","last_name":"{{last_name}}","date_of_birth":"{{date_of_birth}}"},{"id":1118175,"first_name":"{{fist_name}}","middle_name":"{{middle_name}}","last_name":"{{last_name}}","date_of_birth":"{{date_of_birth}}"},{"id":1118174,"first_name":"{{fist_name}}","middle_name":"{{middle_name}}","last_name":"{{last_name}}","date_of_birth":"{{date_of_birth}}"},{"id":1118173,"first_name":"inicio","middle_name":"meio","last_name":"fim","date_of_birth":"11/11/11"},{"id":1118172,"first_name":"{{fist_name}}","middle_name":"{{middle_name}}","last_name":"{{last_name}}","date_of_birth":"{{date_of_birth}}"},{"id":1118171,"first_name":"{{fist_name}}","middle_name":"{{middle_name}}","last_name":"{{last_name}}","date_of_birth":"{{date_of_birth}}"},{"id":1118170,"first_name":"{{fist_name}}","middle_name":"{{middle_name}}","last_name":"{{last_name}}","date_of_birth":"{{date_of_birth}}"},{"id":1118169,"first_name":"{{fist_name}}","middle_name":"{{middle_name}}","last_name":"{{last_name}}","date_of_birth":"{{date_of_birth}}"},{"id":1118168,"first_name":"{{fist_name}}","middle_name":"{{middle_name}}","last_name":"{{last_name}}","date_of_birth":"{{date_of_birth}}"},{"id":1118167,"first_name":"sample string 1","middle_name":"sample string 2","last_name":"sample string 3","date_of_birth":"sample string 4"},{"id":1118166,"first_name":"sample string 1","middle_name":"sample string 2","last_name":"sample string 3","date_of_birth":"sample string 4"},{"id":1118165,"first_name":"sample string 1","middle_name":"sample string 2","last_name":"sample string 3","date_of_birth":"sample string 4"},{"id":1118164,"first_name":"sample string 1","middle_name":"sample string 2","last_name":"sample string 3","date_of_birth":"sample string 4"},{"id":1118163,"first_name":"sample string 1","middle_name":"sample string 2","last_name":"sample string 3","date_of_birth":"sample string 4"},{"id":1118162,"first_name":"sample string 1","middle_name":"sample string 2","last_name":"sample string 3","date_of_birth":"sample string 4"},{"id":1118161,"first_name":"sample string 1","middle_name":"sample string 2","last_name":"sample string 3","date_of_birth":"sample string 4"},{"id":1118160,"first_name":"sample string 1","middle_name":"sample string 2","last_name":"sample string 3","date_of_birth":"sample string 4"},{"id":1118159,"first_name":"sample string 1","middle_name":"sample string 2","last_name":"sample string 3","date_of_birth":"sample string 4"},{"id":1118158,"first_name":"sample string 1","middle_name":"sample string 2","last_name":"sample string 3","date_of_birth":"sample string 4"},{"id":1118157,"first_name":"sample string 1","middle_name":"sample string 2","last_name":"sample string 3","date_of_birth":"sample string 4"},{"id":1118155,"first_name":"{{fist_name}}","middle_name":"{{middle_name}}","last_name":"{{last_name}}","date_of_birth":"{{date_of_birth}}"},{"id":1118153,"first_name":"sample string 2","middle_name":"sample string 3","last_name":"sample string 4","date_of_birth":"sample string 5"},{"id":1118152,"first_name":"sample string 2 ","middle_name":"sample string 3","last_name":"sample string 4","date_of_birth":"sample string 5"},{"id":1118151,"first_name":"ggff2","middle_name":"sam","last_name":"sample","date_of_birth":"sample string 5"},{"id":1118150,"first_name":"sample string 2","middle_name":"sample string 3","last_name":"sample string 4","date_of_birth":"sample string 5"},{"id":1118149,"first_name":"sample string 2 ","middle_name":"sample string 3","last_name":"sample string 4","date_of_birth":"sample string 5"},{"id":1118148,"first_name":"ggff2","middle_name":"sam","last_name":"sample","date_of_birth":"sample string 5"},{"id":1118147,"first_name":"sample string 2","middle_name":"sample string 3","last_name":"sample string 4","date_of_birth":"sample string 5"},{"id":1118146,"first_name":"sample string 2 ","middle_name":"sample string 3","last_name":"sample string 4","date_of_birth":"sample string 5"},{"id":1118145,"first_name":"ggff2","middle_name":"sam","last_name":"sample","date_of_birth":"sample string 5"},{"id":1118144,"first_name":"First2","middle_name":"Mid2","last_name":"Last2","date_of_birth":"23-10-1919"},{"id":1118143,"first_name":"First1","middle_name":"Mid1","last_name":"Last1","date_of_birth":"23-09-1998"},{"id":1118142,"first_name":"First1","middle_name":"Mid1","last_name":"Last1","date_of_birth":"23/09/1991"},{"id":1118141,"first_name":"First1","middle_name":"Mid1","last_name":"Last1","date_of_birth":"23/09/1991"},{"id":1118140,"first_name":"sample string 2","middle_name":"sample string 3","last_name":"sample string 4","date_of_birth":"sample string 5"},{"id":1118139,"first_name":"sample string 2 ","middle_name":"sample string 3","last_name":"sample string 4","date_of_birth":"sample string 5"},{"id":1118138,"first_name":"ggff2","middle_name":"sam","last_name":"sample","date_of_birth":"sample string 5"},{"id":1118137,"first_name":"{{fist_name}}","middle_name":"{{middle_name}}","last_name":"{{last_name}}","date_of_birth":"{{date_of_birth}}"},{"id":1118128,"first_name":"Anki","middle_name":"Jadhao","last_name":"Adrress","date_of_birth":"31-01-2021"},{"id":1118127,"first_name":"testing","middle_name":"A","last_name":"Hello","date_of_birth":"12/12/1999"},{"id":1118126,"first_name":"{{fist_name}}","middle_name":"{{middle_name}}","last_name":"{{last_name}}","date_of_birth":"{{date_of_birth}}"},{"id":1118125,"first_name":"Someone","middle_name":"Middle","last_name":"Last","date_of_birth":"05/06/1990"},{"id":1118124,"first_n... (set the log level to DEBUG or TRACE to see the full content) 
+ </msg>
+<msg timestamp="20220331 11:28:04.612" level="INFO">${get_response} = &lt;Response [200]&gt;</msg>
+<status status="PASS" starttime="20220331 11:28:04.249" endtime="20220331 11:28:04.612"/>
+</kw>
+<kw name="Log To Console" library="BuiltIn">
+<arg>${get_response.content}</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="PASS" starttime="20220331 11:28:04.612" endtime="20220331 11:28:04.617"/>
+</kw>
+<status status="PASS" starttime="20220331 11:28:03.867" endtime="20220331 11:28:04.618"/>
+</test>
+<status status="PASS" starttime="20220331 11:28:03.861" endtime="20220331 11:28:04.619"/>
+</suite>
+<suite id="s1-s8" name="TC8 DELETE" source="C:\Users\a-pustovoitaite\robot-scripts\API\TestCases\TC8_DELETE.robot">
+<test id="s1-s8-t1" name="TC_08 DELETE API" line="9">
+<kw name="Create Session" library="RequestsLibrary">
+<arg>my_session</arg>
+<arg>${base_url}</arg>
+<doc>Create Session: create a HTTP session to a server</doc>
+<msg timestamp="20220331 11:28:04.627" level="INFO">Creating Session using : alias=my_session, url=http://www.thetestingworldapi.com/, headers={},                     cookies={}, auth=None, timeout=None, proxies=None, verify=False,                     debug=0 </msg>
+<status status="PASS" starttime="20220331 11:28:04.627" endtime="20220331 11:28:04.627"/>
+</kw>
+<kw name="DELETE On Session" library="RequestsLibrary">
+<var>${response}</var>
+<arg>my_session</arg>
+<arg>api/studentsDetails/1118125</arg>
+<doc>Sends a DELETE request on a previously created HTTP Session.</doc>
+<msg timestamp="20220331 11:28:04.981" level="INFO">DELETE Request : url=http://www.thetestingworldapi.com/api/studentsDetails/1118125 
+ path_url=/api/studentsDetails/1118125 
+ headers={'User-Agent': 'python-requests/2.27.1', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive', 'Content-Length': '0'} 
+ body=None 
+ </msg>
+<msg timestamp="20220331 11:28:04.981" level="INFO">DELETE Response : url=http://www.thetestingworldapi.com/api/studentsDetails/1118125 
+ status=200, reason=OK 
+ headers={'Cache-Control': 'no-cache', 'Pragma': 'no-cache', 'Content-Type': 'application/json; charset=utf-8', 'Expires': '-1', 'Server': 'Microsoft-IIS/8.5', 'X-AspNet-Version': '4.0.30319', 'X-Powered-By': 'ASP.NET', 'X-Powered-By-Plesk': 'PleskWin', 'Date': 'Thu, 31 Mar 2022 10:28:03 GMT', 'Content-Length': '46'} 
+ body={"status":"true","msg":"Delete  data success"} 
+ </msg>
+<msg timestamp="20220331 11:28:04.981" level="INFO">${response} = &lt;Response [200]&gt;</msg>
+<status status="PASS" starttime="20220331 11:28:04.628" endtime="20220331 11:28:04.981"/>
+</kw>
+<kw name="Log" library="BuiltIn">
+<arg>${response.content}</arg>
+<doc>Logs the given message with the given level.</doc>
+<msg timestamp="20220331 11:28:04.982" level="INFO">{"status":"true","msg":"Delete  data success"}</msg>
+<status status="PASS" starttime="20220331 11:28:04.982" endtime="20220331 11:28:04.983"/>
+</kw>
+<kw name="Set Variable" library="BuiltIn">
+<var>${json_response}</var>
+<arg>${response.json()}</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<msg timestamp="20220331 11:28:04.983" level="INFO">${json_response} = {'status': 'true', 'msg': 'Delete  data success'}</msg>
+<status status="PASS" starttime="20220331 11:28:04.983" endtime="20220331 11:28:04.983"/>
+</kw>
+<kw name="Log" library="BuiltIn">
+<arg>${json_response}</arg>
+<doc>Logs the given message with the given level.</doc>
+<msg timestamp="20220331 11:28:04.984" level="INFO">{'status': 'true', 'msg': 'Delete  data success'}</msg>
+<status status="PASS" starttime="20220331 11:28:04.984" endtime="20220331 11:28:04.984"/>
+</kw>
+<kw name="Get Value From Json" library="JSONLibrary">
+<var>@{status_list}</var>
+<arg>${json_response}</arg>
+<arg>status</arg>
+<doc>Get Value From JSON using JSONPath</doc>
+<msg timestamp="20220331 11:28:05.002" level="INFO">@{status_list} = [ true ]</msg>
+<status status="PASS" starttime="20220331 11:28:04.984" endtime="20220331 11:28:05.002"/>
+</kw>
+<kw name="Log" library="BuiltIn">
+<arg>@{status_list}</arg>
+<doc>Logs the given message with the given level.</doc>
+<msg timestamp="20220331 11:28:05.002" level="INFO">true</msg>
+<status status="PASS" starttime="20220331 11:28:05.002" endtime="20220331 11:28:05.002"/>
+</kw>
+<kw name="Get From List" library="Collections">
+<var>${status}</var>
+<arg>${status_list}</arg>
+<arg>0</arg>
+<doc>Returns the value specified with an ``index`` from ``list``.</doc>
+<msg timestamp="20220331 11:28:05.003" level="INFO">${status} = true</msg>
+<status status="PASS" starttime="20220331 11:28:05.002" endtime="20220331 11:28:05.003"/>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<arg>${status}</arg>
+<arg>true</arg>
+<doc>Fails if the given objects are unequal.</doc>
+<status status="PASS" starttime="20220331 11:28:05.003" endtime="20220331 11:28:05.003"/>
+</kw>
+<status status="PASS" starttime="20220331 11:28:04.626" endtime="20220331 11:28:05.004"/>
+</test>
+<status status="PASS" starttime="20220331 11:28:04.621" endtime="20220331 11:28:05.005"/>
+</suite>
+<status status="PASS" starttime="20220331 11:28:01.019" endtime="20220331 11:28:05.007"/>
+</suite>
+<statistics>
+<total>
+<stat pass="8" fail="0" skip="0">All Tests</stat>
+</total>
+<tag>
+</tag>
+<suite>
+<stat pass="8" fail="0" skip="0" id="s1" name="TestCases">TestCases</stat>
+<stat pass="1" fail="0" skip="0" id="s1-s1" name="TC1 GET Request">TestCases.TC1 GET Request</stat>
+<stat pass="1" fail="0" skip="0" id="s1-s2" name="TC2 POST Request">TestCases.TC2 POST Request</stat>
+<stat pass="1" fail="0" skip="0" id="s1-s3" name="TC3 JSON">TestCases.TC3 JSON</stat>
+<stat pass="1" fail="0" skip="0" id="s1-s4" name="TC4 JSON">TestCases.TC4 JSON</stat>
+<stat pass="1" fail="0" skip="0" id="s1-s5" name="TC5 API">TestCases.TC5 API</stat>
+<stat pass="1" fail="0" skip="0" id="s1-s6" name="TC6 POST">TestCases.TC6 POST</stat>
+<stat pass="1" fail="0" skip="0" id="s1-s7" name="TC7 PUT">TestCases.TC7 PUT</stat>
+<stat pass="1" fail="0" skip="0" id="s1-s8" name="TC8 DELETE">TestCases.TC8 DELETE</stat>
+</suite>
+</statistics>
+<errors>
+</errors>
+</robot>
